@@ -45,3 +45,13 @@ jobs:
         . asdf/asdf.sh
         asdf plugin-test java "$GITHUB_WORKSPACE" --asdf-plugin-gitref "$GITHUB_SHA" --asdf-tool-version zulu-8.52.0.23 /usr/libexec/java_home -V 2>&1 | grep "Zulu 8.52.0.23"
       if: matrix.os == 'macOS-latest'
+    - name: Check update_data.bash
+      env:
+        GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        ./update_data.bash
+        grep adoptopenjdk-openj9-11 data/jdk-linux-x86_64.tsv
+        grep adoptopenjdk-openj9-large_heap-11 data/jdk-macosx-x86_64.tsv
+        grep zulu-musl-11 data/jdk-linux-x86_64.tsv
+        grep liberica-javafx-16 data/jdk-linux-arm32-vfp-hflt.tsv
+        grep liberica-lite-11 data/jdk-macosx-x86_64.tsv
