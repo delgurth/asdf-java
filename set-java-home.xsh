@@ -7,9 +7,9 @@ def asdf_update_java_home() -> None:
         if xonsh.platform.ON_DARWIN:
             if $java_path == '/usr/bin/java':
                 $JAVA_HOME=$(/usr/libexec/java_home).rstrip('\n')
-            else
+            else:
                 $JAVA_HOME=$(dirname $(dirname $(realpath $java_path))).rstrip('\n')
-        else
+        else:
             $JAVA_HOME=$(dirname $(dirname $(realpath $java_path))).rstrip('\n')
     del $java_path
 
