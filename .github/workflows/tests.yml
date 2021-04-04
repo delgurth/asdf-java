@@ -58,8 +58,6 @@ jobs:
         asdf global java adoptopenjdk-8.0.252+9.1.openj9-0.20.0
         echo ". $PWD/asdf/asdf.sh" >> $HOME/.zshrc
         echo ". $HOME/.asdf/plugins/java/set-java-home.zsh" >> $HOME/.zshrc
-        echo "source-bash $PWD/asdf/asdf.sh" >> $HOME/.xonshrc
-        echo "source $HOME/.asdf/plugins/java/set-java-home.xsh" >> $HOME/.xonshrc
         mkdir -p $HOME/.config/fish/functions/
         ln -s $HOME/.asdf/plugins/java/set-java-home.fish $HOME/.config/fish/functions/asdf_update_java_home.fish
         echo "source $PWD/asdf/asdf.fish" >> $HOME/.config/fish/config.fish
@@ -79,12 +77,13 @@ jobs:
         _asdf_java_prompt_command
         echo $JAVA_HOME | grep adoptopenjdk-8.0.252+9.1.openj9-0.20.0
       shell: bash {0}
-    - name: Run JAVA_HOME setting test xonsh
+    - name: Run JAVA_HOME setting test xonsh (returns success even though it might fail!)
       env:
         GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         echo $JAVA_HOME
-        source $HOME/.xonshrc
+        source-bash asdf/asdf.sh
+        source set-java-home.xsh
         echo $JAVA_HOME
         echo $JAVA_HOME | grep adoptopenjdk-8.0.252+9.1.openj9-0.20.0
       shell: xonsh {0}
@@ -137,7 +136,7 @@ jobs:
         asdf which java
         echo $JAVA_HOME
       shell: bash {0}
-    - name: Run system tool-version test on macOS with xonsh
+    - name: Run system tool-version test on macOS with xonsh (returns success even though it might fail!)
       if: matrix.os == 'macOS-latest'
       env:
         GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
