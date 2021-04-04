@@ -42,7 +42,7 @@ jobs:
         GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         . asdf/asdf.sh
-        apt install -y zsh fish xonsh bash
+        sudo apt install -y zsh fish xonsh bash
         echo ". ~/.asdf/plugins/java/set-java-home.bash" >> ~/.bashrc
         echo ". ~/.asdf/plugins/java/set-java-home.zsh" >> ~/.zshrc
         echo "source ~/.asdf/plugins/java/set-java-home.xsh" >> ~/.xonshrc
