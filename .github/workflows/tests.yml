@@ -86,21 +86,21 @@ jobs:
         echo ". ~/.asdf/plugins/java/set-java-home.bash" >> ~/.bashrc
         echo ". ~/.asdf/plugins/java/set-java-home.zsh" >> ~/.zshrc
         echo "source ~/.asdf/plugins/java/set-java-home.xsh" >> ~/.xonshrc
-        mkdir ~/.config/fish/functions/
+        mkdir -p ~/.config/fish/functions/
         ln -s ~/.asdf/plugins/java/set-java-home.fish ~/.config/fish/functions/asdf_update_java_home.fish
         echo "asdf_update_java_home" >> ~/.config/fish/config.fish
         asdf global java adoptopenjdk-8.0.252+9.1.openj9-0.20.0
         unset JAVA_HOME; /usr/local/bin/fish
-        echo $JAVA_HOME
+        echo $JAVA_HOME | grep adoptopenjdk-8.0.252+9.1.openj9-0.20.0
         exit
         unset JAVA_HOME; /usr/local/bin/bash
-        echo $JAVA_HOME
+        echo $JAVA_HOME | grep adoptopenjdk-8.0.252+9.1.openj9-0.20.0
         exit
         unset JAVA_HOME; /usr/local/bin/xonsh
-        echo $JAVA_HOME
+        echo $JAVA_HOME | grep adoptopenjdk-8.0.252+9.1.openj9-0.20.0
         exit
         unset JAVA_HOME; /usr/local/bin/zsh
-        echo $JAVA_HOME
+        echo $JAVA_HOME | grep adoptopenjdk-8.0.252+9.1.openj9-0.20.0
         exit
 
     - name: Run system tool-version test on macOS
@@ -108,7 +108,12 @@ jobs:
       env:
         GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
+        export ASDF_CONFIG_FILE=${HOME}"/.asdfrc"
+        echo "java_macos_integration_enable = yes" > "${ASDF_CONFIG_FILE}"
         . asdf/asdf.sh
+        asdf plugin add java
+        asdf install java zulu-8.52.0.23
+
         mkdir system
         cd system
         asdf local java system
@@ -116,17 +121,17 @@ jobs:
 
         unset JAVA_HOME; /usr/local/bin/fish
         cd system
-        java -version
+        java -version | grep "Zulu 8.52.0.23"
         exit
         unset JAVA_HOME; /usr/local/bin/bash
         cd system
-        java -version
+        java -version | grep "Zulu 8.52.0.23"
         exit
         unset JAVA_HOME; /usr/local/bin/xonsh
         cd system
-        java -version
+        java -version | grep "Zulu 8.52.0.23"
         exit
         unset JAVA_HOME; /usr/local/bin/zsh
         cd system
-        java -version
+        java -version | grep "Zulu 8.52.0.23"
 
