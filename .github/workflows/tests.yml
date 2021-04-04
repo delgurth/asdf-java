@@ -16,8 +16,8 @@ jobs:
       TERM: dumb
     steps:
     - uses: actions/checkout@v2
-    - uses: mstksg/get-package@v1
-#    - uses: delgurth/get-package@v2
+#    - uses: mstksg/get-package@v1
+    - uses: delgurth/get-package@v3
       with:
         brew: bash coreutils jq shellcheck fish xonsh zsh
         apt-get: jq shellcheck zsh fish xonsh bash
@@ -76,6 +76,8 @@ jobs:
       env:
         GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
+        which bash
+        bash -version
         . $HOME/.bashrc
         cat $HOME/.bashrc
         declare -F
@@ -103,14 +105,12 @@ jobs:
       run: |
         export ASDF_CONFIG_FILE=${HOME}"/.asdfrc"
         echo "java_macos_integration_enable = yes" > "${ASDF_CONFIG_FILE}"
-        . asdf/asdf.sh
-        asdf --version
-        asdf plugin list --urls --refs
-        asdf plugin list | grep java || asdf plugin add java "$GITHUB_WORKSPACE"
+        . $HOME/.bashrc
+        tail -10 $HOME/.bashrc
         asdf install java zulu-16.28.11
         mkdir system
         cd system
-        asdf local java system
+        echo "java system" > .tool-versions
     - name: Run system tool-version test on macOS with fish
       if: matrix.os == 'macOS-latest'
       env:
