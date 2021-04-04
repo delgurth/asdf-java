@@ -58,7 +58,7 @@ jobs:
         mkdir -p ~/.config/fish/functions/
         ln -s ~/.asdf/plugins/java/set-java-home.fish ~/.config/fish/functions/asdf_update_java_home.fish
         echo "asdf_update_java_home" >> ~/.config/fish/config.fish
-        asdf global use adoptopenjdk-8.0.252+9.1.openj9-0.20.0
+        asdf global java adoptopenjdk-8.0.252+9.1.openj9-0.20.0
         unset JAVA_HOME; /usr/bin/fish
         echo $JAVA_HOME
         exit
@@ -85,7 +85,7 @@ jobs:
         mkdir ~/.config/fish/functions/
         ln -s ~/.asdf/plugins/java/set-java-home.fish ~/.config/fish/functions/asdf_update_java_home.fish
         echo "asdf_update_java_home" >> ~/.config/fish/config.fish
-        asdf global use adoptopenjdk-8.0.252+9.1.openj9-0.20.0
+        asdf global java adoptopenjdk-8.0.252+9.1.openj9-0.20.0
         unset JAVA_HOME; /usr/local/bin/fish
         echo $JAVA_HOME
         exit
