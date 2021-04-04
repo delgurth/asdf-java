@@ -77,13 +77,13 @@ jobs:
         . asdf/asdf.sh
         . set-java-home.bash
         _asdf_java_prompt_command
-        echo $JAVA_HOME
         echo $JAVA_HOME | grep adoptopenjdk-8.0.252+9.1.openj9-0.20.0
       shell: bash {0}
     - name: Run JAVA_HOME setting test xonsh
       env:
         GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
+        echo "Testing 1.2.3"
         echo $JAVA_HOME | grep adoptopenjdk-8.0.252+9.1.openj9-0.20.0
       shell: xonsh {0}
     - name: Run JAVA_HOME setting test zsh
@@ -113,7 +113,9 @@ jobs:
         GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         cd system
+        cat .tool-versions
         asdf which java
+        asdf_update_java_home
         echo $JAVA_HOME
       shell: fish {0}
     - name: Run system tool-version test on macOS with bash
@@ -121,6 +123,7 @@ jobs:
       env:
         GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
+        ls -al asdf
         . asdf/asdf.sh
         . set-java-home.bash
         cd system
@@ -134,6 +137,7 @@ jobs:
       env:
         GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
+        source $HOME/.xonshrc
         cd system
         asdf which java
         echo $JAVA_HOME
