@@ -76,10 +76,11 @@ jobs:
       env:
         GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        which bash
-        bash -version
         . $HOME/.bashrc
-        cat $HOME/.bashrc
+        cat /home/runner/work/asdf-java/asdf-java/asdf/asdf.sh
+        cat /home/runner/.asdf/plugins/java/set-java-home.bash
+        asdf --version
+        echo $PROMPT_COMMAND
         declare -F
         _asdf_java_update_java_home
         echo $JAVA_HOME | grep adoptopenjdk-8.0.252+9.1.openj9-0.20.0
