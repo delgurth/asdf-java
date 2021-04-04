@@ -48,7 +48,7 @@ To set JAVA_HOME in your shell's initialization add the following:
 
 ### Fish
 ```
-mkdir ~/.config/fish/functions/
+mkdir -p ~/.config/fish/functions/
 ln -s ~/.asdf/plugins/java/set-java-home.fish ~/.config/fish/functions/asdf_update_java_home.fish
 echo "asdf_update_java_home" >> ~/.config/fish/config.fish
 ```

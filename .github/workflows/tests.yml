@@ -55,7 +55,7 @@ jobs:
         echo ". ~/.asdf/plugins/java/set-java-home.bash" >> ~/.bashrc
         echo ". ~/.asdf/plugins/java/set-java-home.zsh" >> ~/.zshrc
         echo "source ~/.asdf/plugins/java/set-java-home.xsh" >> ~/.xonshrc
-        mkdir ~/.config/fish/functions/
+        mkdir -p ~/.config/fish/functions/
         ln -s ~/.asdf/plugins/java/set-java-home.fish ~/.config/fish/functions/asdf_update_java_home.fish
         echo "asdf_update_java_home" >> ~/.config/fish/config.fish
         asdf global use adoptopenjdk-8.0.252+9.1.openj9-0.20.0
