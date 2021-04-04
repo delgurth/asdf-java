@@ -16,7 +16,7 @@ _Besides bash (the shell used by the maintainer) this plugin **should** work on 
 ## Install
 
 ```
-asdf plugin-add java
+asdf plugin add java
 ```
 
 ## Use
