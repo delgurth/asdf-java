@@ -101,6 +101,12 @@ jobs:
       env:
         GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
+        export ASDF_CONFIG_FILE=${HOME}"/.asdfrc"
+        echo "java_macos_integration_enable = yes" > "${ASDF_CONFIG_FILE}"
+        . asdf/asdf.sh
+        asdf --version
+        asdf plugin list --urls --refs
+        asdf plugin list | grep java || asdf plugin add java "$GITHUB_WORKSPACE"
         asdf install java zulu-16.28.11
         mkdir system
         cd system
