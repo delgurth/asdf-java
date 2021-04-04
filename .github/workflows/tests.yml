@@ -55,21 +55,29 @@ jobs:
         asdf install java adoptopenjdk-8.0.252+9.1.openj9-0.20.0
         asdf global java adoptopenjdk-8.0.252+9.1.openj9-0.20.0
         sudo apt -qq install -y zsh fish xonsh bash
+        echo "bashrc"
         echo ". ~/.asdf/plugins/java/set-java-home.bash" >> ~/.bashrc
+        echo "zshrc"
         echo ". ~/.asdf/plugins/java/set-java-home.zsh" >> ~/.zshrc
+        echo "xonshrc"
         echo "source ~/.asdf/plugins/java/set-java-home.xsh" >> ~/.xonshrc
+        echo "fish config"
         mkdir -p ~/.config/fish/functions/
         ln -s ~/.asdf/plugins/java/set-java-home.fish ~/.config/fish/functions/asdf_update_java_home.fish
         echo "asdf_update_java_home" >> ~/.config/fish/config.fish
+        echo "FISH"
         unset JAVA_HOME; /usr/bin/fish
         echo $JAVA_HOME | grep adoptopenjdk-8.0.252+9.1.openj9-0.20.0
         exit $status
+        echo "BASH"
         unset JAVA_HOME; /usr/bin/bash
         echo $JAVA_HOME | grep adoptopenjdk-8.0.252+9.1.openj9-0.20.0
         exit $?
+        echo "XONSH"
         unset JAVA_HOME; /usr/bin/xonsh
         echo $JAVA_HOME | grep adoptopenjdk-8.0.252+9.1.openj9-0.20.0
         exit _.rtn
+        echo "ZSH"
         unset JAVA_HOME; /usr/bin/zsh
         echo $JAVA_HOME | grep adoptopenjdk-8.0.252+9.1.openj9-0.20.0
         exit $?
