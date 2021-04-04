@@ -101,8 +101,8 @@ jobs:
       run: |
         export ASDF_CONFIG_FILE=${HOME}"/.asdfrc"
         echo "java_macos_integration_enable = yes" > "${ASDF_CONFIG_FILE}"
-        . $HOME/.bashrc
-        tail -10 $HOME/.bashrc
+        . asdf/asdf.sh
+        . set-java-home.bash
         asdf install java zulu-16.28.11
         mkdir system
         cd system
@@ -122,8 +122,10 @@ jobs:
         GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         . asdf/asdf.sh
-        . $HOME/.asdf/plugins/java/set-java-home.bash
+        . set-java-home.bash
         cd system
+        asdf which java
+        _asdf_java_prompt_command
         asdf which java
         echo $JAVA_HOME
       shell: bash {0}
