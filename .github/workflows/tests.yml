@@ -131,12 +131,9 @@ jobs:
       env:
         GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        echo $PWD
         source-bash $PWD/asdf/asdf.sh
         source set-java-home.xsh
-        asdf which java
         cd system
-        asdf which java
         echo $JAVA_HOME | grep "/Library/Java/JavaVirtualMachines/"
       shell: xonsh {0}
     - name: Run system tool-version test on macOS with zsh
