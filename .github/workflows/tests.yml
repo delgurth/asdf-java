@@ -11,8 +11,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-#        os: ['ubuntu-latest', 'macOS-latest']
-        os: ['macOS-latest']
+        os: ['ubuntu-latest', 'macOS-latest']
     env:
       TERM: dumb
     steps:
@@ -137,7 +136,7 @@ jobs:
         source-bash $PWD/asdf/asdf.sh
         source set-java-home.xsh
         cd system
-        echo $JAVA_HOME | grep -q "1/Library/Java/JavaVirtualMachines/"
+        echo $JAVA_HOME | grep -q "/Library/Java/JavaVirtualMachines/"
       shell: xonsh {0}
     - name: Run system tool-version test on macOS with zsh
       if: matrix.os == 'macOS-latest'
