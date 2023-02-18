@@ -3,6 +3,8 @@
 def asdf_update_java_home() -> None:
     import xonsh.platform
     import sys
+    $asdf_path=$(which asdf).rstrip('\n')
+    print('asdf path {}'.format($asdf_path), file=sys.stderr)
     $java_path=$(asdf which java).rstrip('\n')
     print('java path {}'.format($java_path), file=sys.stderr)
     if len($java_path) > 0:
