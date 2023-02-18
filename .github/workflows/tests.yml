@@ -98,7 +98,8 @@ jobs:
       if: matrix.os == 'macOS-latest'
       env:
         GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: xpip install gnureadline
+      run: pip3 install gnureadline
+      shell: xonsh {0}
     - name: Run JAVA_HOME setting test xonsh
       env:
         GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
