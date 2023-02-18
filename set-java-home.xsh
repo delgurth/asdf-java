@@ -8,7 +8,7 @@ def asdf_update_java_home() -> None:
     $asdf_path=$(asdf list java).rstrip('\n')
     print('asdf list java  {}'.format($asdf_path), file=sys.stderr)
     $java_path=$(asdf which java).rstrip('\n')
-    print('java path {}'.format($java_path), file=sys.stderr)
+    print('before sjava path {} after java path'.format($java_path), file=sys.stderr)
     if len($java_path) > 0:
         if xonsh.platform.ON_DARWIN:
             print('on darwin')
