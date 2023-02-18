@@ -94,6 +94,11 @@ jobs:
         _asdf_java_prompt_command
         echo $JAVA_HOME | grep -q adoptopenjdk-openj9-8.0.252+9.1.openj9-0.20.0
       shell: bash {0}
+    - name: Run extra installs for xonsh on macos
+      if: matrix.os == 'macOS-latest'
+      env:
+        GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: xpip install gnureadline
     - name: Run JAVA_HOME setting test xonsh
       env:
         GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -101,6 +106,8 @@ jobs:
         $RAISE_SUBPROC_ERROR = True
         source-bash $PWD/asdf/asdf.sh
         source set-java-home.xsh
+        asdf which java
+        echo $JAVA_HOME
         echo $JAVA_HOME | grep -q adoptopenjdk-openj9-8.0.252+9.1.openj9-0.20.0
       shell: xonsh {0}
     - name: Run JAVA_HOME setting test zsh
