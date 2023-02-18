@@ -3,15 +3,16 @@
 def asdf_update_java_home() -> None:
     import xonsh.platform
     $java_path=$(asdf which java).rstrip('\n')
+    print('java path {}'.format($java_path), file=sys.stderr)
     if len($java_path) > 0:
         if xonsh.platform.ON_DARWIN:
             print('on darwin')
             if $java_path == '/usr/bin/java':
                 $JAVA_HOME=$(/usr/libexec/java_home).rstrip('\n')
-                print('Tried to set java home with system java {}'.format(java_path), file=sys.stderr)
+                print('Tried to set java home with system java {}'.format($java_path), file=sys.stderr)
             else:
                 $JAVA_HOME=$(dirname $(dirname $(realpath $java_path))).rstrip('\n')
-                print('Tried to set java home with normal java {}'.format(java_path), file=sys.stderr)
+                print('Tried to set java home with normal java {}'.format($java_path), file=sys.stderr)
         else:
             print('not on darwin')
             $JAVA_HOME=$(dirname $(dirname $(realpath $java_path))).rstrip('\n')

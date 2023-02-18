@@ -22,11 +22,6 @@ jobs:
       with:
         brew: bash coreutils jq shellcheck fish xonsh zsh readline
         apt-get: jq shellcheck zsh fish xonsh bash
-    - name: Fix readline for xonsh on macos
-      if: matrix.os == 'macOS-latest'
-      # cpanm Term::ReadLine::Gnu
-      run: |
-        brew link --force readline
     - name: Run ShellCheck
       run: |
         shellcheck -V
