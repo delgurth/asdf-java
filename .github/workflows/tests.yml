@@ -101,8 +101,7 @@ jobs:
       run: |
         $RAISE_SUBPROC_ERROR = True
         xonsh -V
-        which asdf
-        source-bash --non-interactive $PWD/asdf/asdf.sh
+        source-bash --show --login $PWD/asdf/asdf.sh
         which asdf
         echo "source-bash done"
         source set-java-home.xsh
